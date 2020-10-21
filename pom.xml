@@ -7,7 +7,7 @@
     <groupId>cn.weiecho</groupId>
     <artifactId>distribution-lock</artifactId>
     <name>distribution-lock</name>
-    <version>1.0.0</version>
+    <version>1.0.2</version>
     <description>distribution lock</description>
     <url>https://github.com/weiecho/distribution-lock</url>
     <scm>
