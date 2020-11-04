@@ -69,13 +69,13 @@ public class RedisLock {
 			int rd = ThreadLocalRandom.current().nextInt(BOUND);
 			waitTime += rd;
 
-			log.info("{} waiting for lock {} ms.", methodName, rd);
+			//log.info("{} waiting for lock {} ms.", methodName, rd);
 			LockSupport.parkNanos(rd * 1000000);
 		} while (waitTime < maxWaitMills); // 循环获取锁
 
 		String noLock = String.format("%s-%s can not get the lock.", methodName, key);
 		log.warn(noLock);
-		throw new TimeoutException(noLock);
+		throw new LockTimeoutException(noLock);
 	}
 
 	/**
@@ -92,6 +92,7 @@ public class RedisLock {
 		if (resLockedId != null && resLockedId == lockId) {
 			redisTemplate.delete(key);
 			log.info("{}-{} unlocked.", methodName, key);
+			return;
 		}
 		log.info("{}-{} unlocked (wait timeout).", methodName, key);
 	}

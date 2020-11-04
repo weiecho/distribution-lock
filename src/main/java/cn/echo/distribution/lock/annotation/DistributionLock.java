@@ -1,5 +1,8 @@
 package cn.echo.distribution.lock.annotation;
 
+import org.springframework.core.annotation.AliasFor;
+import org.springframework.scheduling.annotation.Scheduled;
+
 import java.lang.annotation.*;
 
 /**
@@ -9,10 +12,11 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
 public @interface DistributionLock {
+
 	/**
 	 * 锁名称
 	 */
-	String value() default "";
+	String key() default "";
 
 	/**
 	 * 持锁时间，持锁超过此时间自动丢弃锁

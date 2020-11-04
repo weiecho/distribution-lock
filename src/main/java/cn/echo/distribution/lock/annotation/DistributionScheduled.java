@@ -19,10 +19,10 @@ public @interface DistributionScheduled {
 	
 	/**
 	 * 锁名称
-	 * Alias for {@link DistributionLock#value}.
+	 * Alias for {@link DistributionLock#key()}.
 	 */
 	@AliasFor(annotation = DistributionLock.class)
-	String value() default "";
+	String key() default "";
 
 	/**
 	 * 持锁时间，持锁超过此时间自动丢弃锁
