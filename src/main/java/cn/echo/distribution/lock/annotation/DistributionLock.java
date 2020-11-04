@@ -26,8 +26,9 @@ public @interface DistributionLock {
 
 	/**
 	 * 最大取锁等待时间
-	 * 没有获取到锁的情况下继续等待，如果超时抛出TimeoutException
+	 * 没有获取到锁的情况下继续等待，如果超时抛出LockTimeoutException
 	 * 单位毫秒，默认1秒
+	 * 小于或等于0时为立即返回超时
 	 */
 	long maxWaitMills() default 1 * 1000;
 

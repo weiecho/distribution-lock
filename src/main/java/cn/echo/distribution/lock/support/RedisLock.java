@@ -70,7 +70,9 @@ public class RedisLock {
 			waitTime += rd;
 
 			//log.info("{} waiting for lock {} ms.", methodName, rd);
-			LockSupport.parkNanos(rd * 1000000);
+			if (maxWaitMills >= 0) {
+				LockSupport.parkNanos(rd * 1000000);
+			}
 		} while (waitTime < maxWaitMills); // 循环获取锁
 
 		String noLock = String.format("%s-%s can not get the lock.", methodName, key);
